@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            height: 100vh;
+            width: 100%;
+            background: #F0F2F5;
+            position: relative;
+        }
+
+        header .main {
+    position: absolute;
+    top: 25%;
+    width: 70%;
+    display: flex;
+    gap: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 9px; /* Adjust the value as needed */
+    }
+
+        header .main .left {
+            flex: 1;
+            justify-content: left;
+        }
+
+        header .main .right {
+            flex: 1;
+        }
+
+        header .main .left p {
+            font-size: 25px;
+            letter-spacing: 0.2px;
+            margin-left: 28px;
+            margin-top: -14px;
+            font-weight: 400;
+        }
+
+        header .main .left img {
+            height: 106px;
+            width: 301px;
+        }
+
+        header .main .right form {
+            background: #fff;
+            width: 396px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+            padding: 20px 0 28px;
+            border-radius: 8px;
+            margin-top: -50px;
+        }
+
+        .form_body {
+            padding: 0 12px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 1px solid #dddfe2;
+            color: #1d2129;
+            font-size: 17px;
+            border-radius: 5px;
+            outline-color: #8AB7EF;
+        }
+
+        .login {
+            background-color: #1877f2;
+            border: none;
+            border-radius: 6px;
+            font-size: 20px;
+            line-height: 48px;
+            padding: 0 16px;
+            width: 100%;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .forget {
+            text-align: center;
+            color: #1877f2;
+            cursor: pointer;
+            text-transform: capitalize;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .forget:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            background-color: rgba(128, 128, 128, 0.349);
+            height: 0.2px;
+        }
+
+        .create {
+            background-color: #42b72a;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            line-height: 48px;
+            padding: 0 16px;
+            width: 192px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            margin: auto;
+        }
+
+        .foot {
+            margin-top: 28px;
+            margin-left: 35px;
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+
+        .foot span {
+            font-weight: bold;
+        }
+
+        /* //signup design */
+        .signup {
+            position: absolute;
+            left: 50%;
+            background: #fff;
+            width: 432px;
+            display: none;
+            top: 50%;
+            z-index: 222;
+            padding-bottom: 18px;
+            transform: translate(-50%, -50%);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+        }
+
+        .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 18px;
+        }
+
+        .top>div>h2 {
+            font-size: 32px;
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .top>div>p {
+            color: #606770;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            line-height: 24px;
+        }
+
+        .top img {
+            padding-bottom: 35px;
+            cursor: pointer;
+            width: 25px;
+        }
+
+        hr {
+            border: 0.2px;
+            background: grey;
+        }
+
+        .signup_body {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 15px;
+        }
+
+        .signup_form .same {
+            padding: 10px;
+            outline: none;
+            width: 50%;
+            font-size: 15px;
+        }
+
+        .name {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        .bottom input {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            font-size: 15px;
+            border-radius: 8px;
+        }
+
+        .birthday {
+            padding: 0 15px;
+        }
+
+        .birthday select {
+            padding: 7px 35px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 3px;
+            border: 1px solid rgba(0, 0, 0, 0.458);
+        }
+
+        .date {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+
+        .gender {
+            padding: 0 15px;
+        }
+
+        .person {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3px;
+        }
+
+        .person>div {
+            border: 1px solid rgba(0, 0, 0, 0.458);
+            padding: 7px;
+            display: flex;
+            font-size: 16px;
+            gap: 15px;
+            border-radius: 3px;
+        }
+
+        .person label {
+            margin-right: 10px;
+        }
+
+        .content {
+            padding: 0 15px;
+        }
+
+        .content p {
+            margin: 10px 0;
+            font-size: 12px;
+            font-family: sans-serif;
+        }
+
+        .text {
+            font-size: 12px;
+            font-family: sans-serif;
+        }
+
+        .singin {
+            height: 36px;
+            width: 194px;
+            background-color: #42b72a;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: bold;
+            margin: auto;
+            margin-left: 118px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .blue {
+            color: #1877f2;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .layer {
+            height: 100vh;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            z-index: 22;
+            opacity: 0.7;
+            display: none;
+        }
+
+        footer {
+    background-color: #fff;
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #385898;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-top: 2px; /* Adjusted margin-top */
+}
+
+        footer a {
+            color: #1877f2;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .footer-contents {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        footer::before {
+            content: "";
+            display: block;
+            height: 1px;
+            background-color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        header .main .left img {
+            height: 150px;
+            width: 360px;
+        }
+    </style>
+    <title>Facebook - Login</title>
+</head>
+
+<body>
+    <header id="header">
+        <div class="layer"></div>
+
+        <div class="main">
+            <div class="left">
+                <img src="C:\Users\63920\Desktop\Coding\third\first\IT261\logo.svg" alt="">
+                <p>Connect with friends and the world around you on Facebook.</p>
+            </div>
+            <div class="right">
+                <form action="#">
+                    <div class="form_body">
+                        <input type="text " placeholder="Email or Phone Number">
+                        <input type="password" placeholder="Password">
+                        <button class="login ">Log In</button>
+                        <p class="forget">forget password?</p>
+                        <hr>
+                        <button class="create" onclick="show()">Create Account</button>
+                    </div>
+                </form>
+                <p class="foot"><span>Create a Page</span> for a celebrity, brand, or business.</p>
+            </div>
+        </div>
+
+        <div class="signup" id="signup">
+            <div class="top">
+                <div>
+                    <h2>Sign Up</h2>
+                    <p>It's quick and easy</p>
+                </div>
+                <img src="/close.png" alt="" onclick="hide()">
+            </div>
+            <hr>
+            <form action="#" class="signup_form">
+                <div class="signup_body">
+                    <div class="name">
+                        <input type="text" placeholder="First Name" class="same">
+                        <input type="text" placeholder="Last Name" class="same">
+                    </div>
+                    <div class="bottom">
+                        <input type="text" placeholder="Email or Phone Number">
+                        <input type="password" placeholder="New Password">
+                    </div>
+                </div>
+
+                <div class="birthday">
+                    <p class="text">Birthday</p>
+                    <div class="date">
+                        <select id="month" name="month">
+                            <option value="Jan">Jan</option>
+                            <option value="feb">Feb</option>
+                            <option value="march">March</option>
+                            <option value="april">April</option>
+                            <option value="may">May</option>
+                            <option value="june">June</option>
+                            <option value="july">July</option>
+                            <option value="aug">Aug</option>
+                            <option value="sep">Sep</option>
+                            <option value="oct">Oct</option>
+                            <option value="Nov">Nov</option>
+                            <option value="Dec">Dec</option>
+                        </select>
+                        <select id="day" name="day">
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                        <select id="year" name="year">
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                            <option value="2013">2013</option>
+                            <option value="2012">2012</option>
+                            <option value="2011">2011</option>
+                            <option value="2010">2010</option>
+                            <option value="2009">2009</option>
+                            <option value="2008">2008</option>
+                            <option value="2007">2007</option>
+                            <option value="2006">2006</option>
+                            <option value="2005">2005</option>
+                            <option value="2004">2004</option>
+                            <option value="2003">2003</option>
+                            <option value="2002">2002</option>
+                            <option value="2001">2001</option>
+                            <option value="2000">2000</option>
+                            <option value="1999">1999</option>
+                            <option value="1998">1998</option>
+                            <option value="1997">1997</option>
+                            <option value="1996">1996</option>
+                            <option value="1995">1995</option>
+                            <option value="1994">1994</option>
+                            <option value="1993">1993</option>
+                            <option value="1992">1992</option>
+                            <option value="1991">1991</option>
+                            <option value="1990">1990</option>
+                            <option value="1989">1989</option>
+                            <option value="1988">1988</option>
+                            <option value="1987">1987</option>
+                            <option value="1986">1986</option>
+                            <option value="1985">1985</option>
+                            <option value="1984">1984</option>
+                            <option value="1983">1983</option>
+                            <option value="1982">1982</option>
+                            <option value="1981">1981</option>
+                            <option value="1980">1980</option>
+                            <option value="1979">1979</option>
+                            <option value="1978">1978</option>
+                            <option value="1977">1977</option>
+                            <option value="1976">1976</option>
+                            <option value="1975">1975</option>
+                            <option value="1974">1974</option>
+                            <option value="1973">1973</option>
+                            <option value="1972">1972</option>
+                            <option value="1971">1971</option>
+                            <option value="1970">1970</option>
+                            <option value="1969">1969</option>
+                            <option value="1968">1968</option>
+                            <option value="1967">1967</option>
+                            <option value="1966">1966</option>
+                            <option value="1965">1965</option>
+                            <option value="1964">1964</option>
+                            <option value="1963">1963</option>
+                            <option value="1962">1962</option>
+                            <option value="1961">1961</option>
+                            <option value="1960">1960</option>
+                            <option value="1959">1959</option>
+                            <option value="1958">1958</option>
+                            <option value="1957">1957</option>
+                            <option value="1956">1956</option>
+                            <option value="1955">1955</option>
+                            <option value="1954">1954</option>
+                            <option value="1953">1953</option>
+                            <option value="1952">1952</option>
+                            <option value="1951">1951</option>
+                            <option value="1950">1950</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="gender">
+                    <p class="text">Gender</p>
+                    <div class="person">
+                        <div>
+                            <label for="Femal">Female</label>
+                            <input type="radio" id="Female" name="gender" value="Female">
+
+                        </div>
+                        <div>
+
+                            <label for="Male">Male</label>
+                            <input type="radio" id="Male" name="gender" value="Male">
+                        </div>
+                        <div>
+
+                            <label for="Custom">Custom</label>
+                            <input type="radio" id="Custom" name="gender" value="Custom">
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <p>
+                        People who use our service may have uploaded your contact information to Facebook. <span
+                            class="blue">Learn more.</span>
+                    </p>
+                    <p>By clicking Sign Up, you agree to our Terms, <span class="blue">Privacy Policy and Cookies
+                            Policy</span>. You may receive
+                        SMS
+                        Notifications from us and can opt out any time.</p>
+                </div>
+                <button class="singin">Sign Up</button>
+            </form>
+        </div>
+    </header>
+
+    <footer>
+        <p>
+            <ol>
+                <div class="footer-contents">
+                    English (UK)
+                    <a href="#">മലയാളം</a>
+                    <a href="#">தமிழ்</a>
+                    <a href="#">తెలుగు</a>
+                    <a href="#">বাংলা</a>
+                    <a href="#">اردو</a></li>
+                    <a href="#">हिन्दी</a></li>
+                    <a href="#">ಕನ್ನಡ</a></li>
+                    <a href="#">Español</a></li>
+                    <a href="#">Português (Brasil)</a></li>
+                    <a href="#">Français (France)</a></li>
+                    <button>+</button>
+                </div>
+                <div class="footer-contents">
+                    <a href="#">Sign Up</a>
+                    <a href="#">Log In </a>
+                    <a href="#">Messenger</a>
+                    <a href="#">Facebook Lite</a>
+                    <a href="#">Watch</a>
+                    <a href="#">People</a>
+                    <a href="#">Pages</a>
+                    <a href="#">Page categories</a>
+                    <a href="#">Places</a>
+                    <a href="#">Games</a>
+                    <a href="#">Locations</a>
+                    <a href="#">Marketplace</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">PayGroups</a>
+                    <a href="#">Jobs</a>
+                    <a href="#">Oculus</a>
+                    <a href="#">Portal</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Local</a>
+                    <a href="#">Sign Up</a>
+                    <a href="#">Log In </a>
+                    <a href="#">Messenger</a>
+                    <a href="#">Facebook Lite</a>
+                    <a href="#">Watch</a>
+                    <a href="#">People</a>
+                    <a href="#">Pages</a>
+                    <a href="#">Page categories</a>
+                    <a href="#">Places</a>
+                    <a href="#">Games</a>
+                    <a href="#">Locations</a>
+                    <a href="#">Marketplace</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">PayGroups</a>
+                    <a href="#">Jobs</a>
+                    <a href="#">Oculus</a>
+                    <a href="#">Portal</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Local</a>
+                
+                
+                    
+                
+
+                </div>
+            </ol>
+        </p>
+    </footer>
+    <script>
+        function show() {
+            var div = document.getElementById('signup');
+            var layer = document.querySelector('.layer');
+            div.style.display = 'block';
+            layer.style.display = 'block';
+        }
+
+        function hide() {
+            var div = document.getElementById('signup');
+            var layer = document.querySelector('.layer');
+            div.style.display = 'none';
+            layer.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
